@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>RunLokal Countdown</title>
+
+<style>
+body{
+  margin:0;
+  background:#000;
+  color:#fff;
+  font-family:Arial, sans-serif;
+}
+.wrapper{
+  padding:25px;
+  text-align:center;
+}
+h2{
+  margin-bottom:20px;
+  font-size:26px;
+}
+.boxes{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+}
+.box{
+  background:#111;
+  width:90px;
+  height:90px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:36px;
+  font-weight:bold;
+  border-radius:12px;
+}
+.label{
+  font-size:13px;
+  margin-top:6px;
+  color:#ccc;
+}
+@media(max-width:480px){
+  .box{
+    width:70px;
+    height:70px;
+    font-size:28px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+  <h2>Early Bird Closing Soon!</h2>
+
+  <div class="boxes">
+    <div>
+      <div class="box" id="d">00</div>
+      <div class="label">Days</div>
+    </div>
+    <div>
+      <div class="box" id="h">00</div>
+      <div class="label">Hours</div>
+    </div>
+    <div>
+      <div class="box" id="m">00</div>
+      <div class="label">Minutes</div>
+    </div>
+    <div>
+      <div class="box" id="s">00</div>
+      <div class="label">Seconds</div>
+    </div>
+  </div>
+</div>
+
+<script>
+var target = new Date("2026-01-01T23:59:59+08:00").getTime();
+
+setInterval(function(){
+  var now = new Date().getTime();
+  var diff = target - now;
+  if(diff < 0) return;
+
+  document.getElementById("d").innerHTML = Math.floor(diff/(1000*60*60*24));
+  document.getElementById("h").innerHTML = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  document.getElementById("m").innerHTML = Math.floor((diff%(1000*60*60))/(1000*60));
+  document.getElementById("s").innerHTML = Math.floor((diff%(1000*60))/1000);
+},1000);
+</script>
+
+</body>
+</html>
